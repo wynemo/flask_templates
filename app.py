@@ -81,6 +81,8 @@ def location():
         if not obj:
             continue
         value['coordinates'] = [obj.group(1), obj.group(2)]
+        value['hotel_name'] = each['hotel_name']
+        value['room_number'] = each['room_number']
         rv.append(value)
     rv = json.dumps(rv)
     return rv
