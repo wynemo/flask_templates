@@ -10,14 +10,15 @@ from util import get_timestamp
 
 app = Flask(__name__)
 
-mysqlurl = 'mysql+pymysql://sonar:sonar&404@192.168.56.103:3306/sonar_dev?charset=utf8mb4'
+# mysqlurl = 'mysql+pymysql://sonar:sonar&404@192.168.56.103:3306/sonar_dev?charset=utf8mb4'
+mysqlurl = 'sqlite:///1.db'
 config = dict(
     SQLALCHEMY_DATABASE_URI=mysqlurl,
     SQLALCHEMY_TRACK_MODIFICATIONS=True,
     SQLALCHEMY_COMMIT_ON_TEARDOWN=True,
-    SQLALCHEMY_POOL_SIZE=100,
-    SQLALCHEMY_MAX_OVERFLOW=200,
-    SQLALCHEMY_POOL_RECYCLE=280,
+    # SQLALCHEMY_POOL_SIZE=100,
+    # SQLALCHEMY_MAX_OVERFLOW=200,
+    SQLALCHEMY_POOL_RECYCLE=280, # 280 seconds, if mysql idle is longer you can set it to 7200s
     SQLALCHEMY_ECHO=True if os.environ.get('ECHO') else False,
 )
 
